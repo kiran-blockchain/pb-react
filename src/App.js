@@ -1,23 +1,34 @@
-
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import { Cart } from './pages/cart';
-import { Home } from './pages/home';
-import { Layout } from './pages/layout';
-import { Products } from './pages/products';
+import { useState } from "react";
+import { Login } from "./components/Login";
+import { UserDetails } from "./components/Login/UserDetails";
+import { Products } from "./pages/products";
+import { AuthContext } from "./providers/AuthContext";
+import { CartContext } from "./providers/CartContext";
 const App = () => {
-  return (
-    //presentation logic goes here
+    const [authStatus, setAuthStatus] = useState(false);
 
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />}/>
-          <Route path="products" element={<Products />} />
-          <Route path="cart" element={<Cart />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    const userLogin = () => {
+        setAuthStatus('loggedin')
+    }
+    const [cartInfo,updateCart] = useState([]);
 
-  )
+    const handleCart = (type,data)=>{
+        if(type=='add'){
+            let cart=cartInfo;
+            cart.push(data);
+            updateCart(cart);
+        }
+    
+    }
+    return (
+        <AuthContext.Provider value={{ status: authStatus, login: userLogin }}>
+            <CartContext.Provider value={{cartItems:cartInfo,addToCart:handleCart}}>
+                <Login />
+                <UserDetails />
+                <Products />
+            </CartContext.Provider>
+        </AuthContext.Provider>
+    )
 }
+
 export default App;
