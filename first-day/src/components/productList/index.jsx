@@ -28,7 +28,7 @@ export const ProductList = (props) => {
     }
     const dispatch = useDispatch();
     useEffect(()=>{
-            dispatch(fetchProductsAsync(url,{}))
+          return dispatch(fetchProductsAsync(url,{}))
     },[])
     return (
         <div className="container">

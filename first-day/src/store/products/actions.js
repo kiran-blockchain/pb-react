@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const fetchProductsAsync =(url,headers)=>{
   return  dispatch=>{
-     dispatch(fetchProducts);
+      dispatch(fetchProducts);
         const config = {
             headers: { ...headers }
         }
