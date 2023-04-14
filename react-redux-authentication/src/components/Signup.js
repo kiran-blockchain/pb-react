@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 const  Signup= ()=> {
   const validationSchema = Yup.object().shape({
     fullname: Yup.string().required('Fullname is required'),
+    
     username: Yup.string()
       .required('Username is required')
       .min(6, 'Username must be at least 6 characters')
