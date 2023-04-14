@@ -4,11 +4,17 @@ import { CartContext } from "../../providers/CartContext"
 
 export const UserDetails = () => {
 
+  
+  
+    const getCartItemsCount =()=>{
+        let count = auth.cartItems.length;
+        console.log(count)
+        return <h1>{count}</h1>
+    }
     const auth = useContext(CartContext)
-    console.log(auth.cartItems.length);
     return (
         <div>
-            {JSON.stringify(auth.cartItems)}
+            {getCartItemsCount()}
         </div>
     )
 }

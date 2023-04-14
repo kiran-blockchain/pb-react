@@ -15,7 +15,7 @@ const App = () => {
     const handleCart = (type,data)=>{
         if(type=='add'){
             let cart=cartInfo;
-            cart.push(data);
+            cart = [...cartInfo,data]
             updateCart(cart);
         }
     
